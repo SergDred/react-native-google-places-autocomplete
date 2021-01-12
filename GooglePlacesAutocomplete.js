@@ -594,7 +594,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
 
   const _renderRow = (rowData = {}) => {
     return (
-      <ScrollView
+      <View
         contentContainerStyle={
           props.isRowScrollable ? { minWidth: '100%' } : { width: '100%' }
         }
@@ -622,7 +622,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
             {_renderRowData(rowData)}
           </View>
         </TouchableHighlight>
-      </ScrollView>
+      </View>
     );
   };
 
@@ -733,30 +733,14 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
         props.currentLocation === true) &&
       listViewDisplayed === true
     ) {
-      return (
-        <FlatList
-          nativeID='result-list-id'
-          scrollEnabled={!props.disableScroll}
-          style={[
-            props.suppressDefaultStyles ? {} : defaultStyles.listView,
-            props.styles.listView,
-          ]}
-          data={dataSource}
-          keyExtractor={keyGenerator}
-          extraData={[dataSource, props]}
-          ItemSeparatorComponent={_renderSeparator}
-          renderItem={({ item }) => _renderRow(item)}
-          ListEmptyComponent={
-            stateText.length > props.minLength && props.listEmptyComponent
-          }
-          ListHeaderComponent={
-            props.renderHeaderComponent &&
-            props.renderHeaderComponent(stateText)
-          }
-          ListFooterComponent={_renderPoweredLogo}
-          {...props}
-        />
-      );
+      return <View style={{ position: 'absolute', top: -(dataSource.length * 45), borderWidth: 2, borderColor: '#e4e4e4' }}>
+        {dataSource.map(item => (
+          <>
+            {_renderRow(item)}
+            {_renderSeparator()}
+          </>
+        ))}
+      </View>
     }
 
     return null;
