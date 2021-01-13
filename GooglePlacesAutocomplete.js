@@ -25,7 +25,7 @@ import {
 
 const defaultStyles = {
   container: {
-    flex: 1,
+    
   },
   textInputContainer: {
     flexDirection: 'row',
@@ -598,11 +598,6 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
         contentContainerStyle={
           props.isRowScrollable ? { minWidth: '100%' } : { width: '100%' }
         }
-        scrollEnabled={props.isRowScrollable}
-        keyboardShouldPersistTaps={props.keyboardShouldPersistTaps}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
       >
         <TouchableHighlight
           style={
