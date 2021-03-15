@@ -123,7 +123,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     }
   };
 
-  const [stateText, setStateText] = useState('');
+  const [stateText, setStateText] = useState(props.defaultValue);
   const [dataSource, setDataSource] = useState(buildRowsFromResults([]));
   const [listViewDisplayed, setListViewDisplayed] = useState(
     props.listViewDisplayed === 'auto' ? false : props.listViewDisplayed,
@@ -822,6 +822,7 @@ GooglePlacesAutocomplete.propTypes = {
   listUnderlayColor: PropTypes.string,
   listViewDisplayed: PropTypes.oneOf(['auto', PropTypes.bool]),
   minLength: PropTypes.number,
+  defaultValue: PropTypes.string,
   nearbyPlacesAPI: PropTypes.string,
   numberOfLines: PropTypes.number,
   onFail: PropTypes.func,
@@ -864,6 +865,7 @@ GooglePlacesAutocomplete.defaultProps = {
     rankby: 'distance',
     type: 'restaurant',
   },
+  defaultValue: '',
   GoogleReverseGeocodingQuery: {},
   isRowScrollable: true,
   keyboardShouldPersistTaps: 'always',
